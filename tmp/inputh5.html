@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh">
+    <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="application-tap-highlight" content="no">
+    <meta content="#ffffff" name="msapplication-TileColor">
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta name="keywords" content="网贷,网贷平台,p2p网贷,P2P网贷平台,和信,和信贷">
+    <meta name="description" content="和信贷是和信公司2013年推出的个人对个人P2P网络贷款/借款服务平台，为有资金需求的借款人和有理财需求的出借人搭建了一个轻松、便捷、安全、透明的网络互动平台。">
+    <title>新手福利-和信贷</title>
+    <script>
+        (function (pw) {
+            var d = document;
+            var a = ((d.documentElement && d.documentElement.clientWidth) || (screen && screen.width)) / pw;
+            var vp = document.querySelectorAll("meta[name='viewport']")[0];
+            if (!vp) {
+                vp = d.createElement('meta');
+                d.head.appendChild(vp);
+            }
+            vp.setAttribute('name', 'viewport');
+            vp.setAttribute('content', 'width=device-width,initial-scale=' + a + ',minimum-scale=' + a + ',maximum-scale=' + a + ',user-scalable=no');
+        })(750);
+    </script>
+</head>
+<body>
+
+@include('www.layouts.analysis', ['isMobile'=>'true'])
+<script src="//static.hexindai.com/lv2/mp.js/jquery-1_12_4-50e803aeb0.js"></script>
+<script>
+    $(function () {
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>新建专题</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .creat{
+        width: 500px;
+        height: 300px;
+        background: rebeccapurple;
+        color: #fff;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        z-index: 999;
+        margin-top: -150px;
+        margin-left: -250px;
+        text-align: center;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .creat_special,.creat_special_h5{
+        width: 150px;
+        height: 30px;
+        background: red;
+        border: none;
+        color: #fff;
+        border-radius: 10px;
+        margin-top: 30px;
+    }
+    .navport{
+        width: 200px;
+        height: 25px;
+        background: rebeccapurple;
+        color: #fff;
+        display: flex;
+        justify-content:space-around;
+        align-items: center;
+        flex-direction: row;
+        cursor: pointer;
+    }
+    .navport p{
+        width: 30%;
+        height: 30px;
+    }
+    .pcdiv h3,.h5div h3{
+        margin: 20px;
+    }
+    .h5div{
+        display: none;
+    }
+    .active{
+        border-bottom: 1px solid red;
+    }
+    .pc_content{
+        width: 840px;
+        margin: 0 auto;
+        text-align: center;
+        color: #666;
+    }
+    .pc_content form input{
+        margin-top: 20px;
+    }
+    .dark_alert {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        background: rgba(000,000,000,.5);
+        z-index: 99;
+    }
+    .input_text, .input_text_h5,#pc_submit input,#h5_submit input{
+        width: 200px;
+        height: 25px;
+        border: 0;
+        border-radius: 3px;
+        padding-left: 10px;
+    }
+    .pc_title,.banner_p{
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .img_change{
+        width: 800px;
+        padding: 20px;
+        margin: 0 auto;
+        background: #cdbfe3;
+        text-align: center;
+    }
+    .img_title{
+        margin: 20px;
+        color: #FFFFCC;
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+    .img_change input{
+        width: 200px;
+        height: 25px;
+        border: 0;
+        border-radius: 3px;
+        padding-left:10px;
+    }
+    .img_btn{
+        width: 200px;
+        height: 30px;
+        color: #fff;
+        background: #FFCC33;
+        border: none;
+        border-radius: 20px;
+        margin-top: 20px;
+        cursor: pointer;
+        outline: none;
+    }
+    .img_notes{
+        font-size: 14px;
+        color: red;
+    }
+    #pc_submit,#h5_submit{
+        background: #FFD700;
+        padding: 20px;
+    }
+    .formBody_btn{
+        background: #FF4500;
+        color: #fff;
+        border: none;
+        width: 200px;
+        height: 30px;
+        border-radius: 20px;
+        margin-top: 20px;
+    }
+    .creatdiv{
+        background: #1E90FF;
+        padding: 10px;
+        margin-top: 20px;
+        padding-bottom: 60px;
+        position: relative;
+    }
+    .alert_div{
+        background:#008000;
+        padding: 10px;
+        margin-top: 20px;
+        padding-bottom: 60px;
+        position: relative;
+    }
+    .creatdiv_title,.alert_div p{
+        font-size: 24px;
+        color: #fff;
+    }
+    .creatdiv label,.alert_div label{
+        color: #fff;
+        margin-top: 20px;
+        display: block;
+    }
+    .divadd,.alertadd{
+        font-size: 40px;
+        color: #fff;
+        position: absolute;
+        left: 382px;
+        bottom: 5px;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div class="creat">
+        <div class="navport">
+            <p class="pcclick active">pc专题</p>
+            <p class="h5click">h5专题</p>
+        </div>
+        <div class="pcdiv">
+            <h3>pc新建专题</h3>
+            <div class="input_content">
+                <label>专题名称：</label>
+                <input type="text" class="input_text" value="">
+            </div>
+            <button type="button" class="creat_special">确认</button>
+        </div>
+        <div class="h5div">
+            <h3>h5新建专题</h3>
+            <div class="input_content">
+                <label>专题名称：</label>
+                <input type="text" class="input_text_h5 " value="">
+            </div>
+            <button type="button" class="creat_special_h5">确认</button>
+        </div>
+    </div>
+    <div class="img_change">
+        <p class="img_notes">*请先将切图拷贝到目录再修改</p>
+        <p class="img_title">批量修改图片名</p>
+        <input type="text" class="input_img" placeholder="图片名称"> <br>
+        <button class="img_btn chang_btn" type="button">点击修改</button>
+    </div>
+    <div class="pc_content">
+        <form action="" class="form_btn" id="pc_submit">
+            <p class="pc_title">title设置</p>
+            <label>title：</label>
+            <input type="text" name="input_title" class="input_title" value=""> <br>
+            <label>keywords：</label>
+            <input type="text" name="input_key" class="input_key" value=""> <br>
+            <label>背景颜色：</label>
+            <input type="text" name="input_bgcolor" class="input_bgcolor" value=""> <br>
+            <p class="banner_p" style="margin-top: 20px">banner设置</p>
+            <label>height:</label>
+            <input type="text" name="banner_height" class="banner_height" value=""> <br>
+            <label>图片名：</label>
+            <input type="text" name="banner_name" class="banner_name" value=""><br>
+            <div class="creatdiv">
+                <p class="creatdiv_title">div区域</p>
+                <label>div1：</label>
+                <input type="text" name="div1_width" placeholder="div宽度" value=""><br>
+                <input type="text" name="div1_height" placeholder="div高度" value=""><br>
+                <input type="text" name="div1_bgimg" placeholder="div背景图片" value=""><br>
+                <label>div2：</label>
+                <input type="text" name="div2_width" placeholder="div宽度" value=""><br>
+                <input type="text" name="div2_height" placeholder="div高度" value=""><br>
+                <input type="text" name="div2_bgimg" placeholder="div背景图片" value=""><br>
+                <input type="text" name="div_num" value="" id="div_num" style="display: none">
+                <div class="divadd">
+                        +
+                </div>
+            </div>
+            <div class="alert_div">
+                <p>弹窗区域</p>
+                <label>alert1：</label>
+                <input type="text" name="alert1_width" placeholder="alert宽度" value=""><br>
+                <input type="text" name="alert1_height" placeholder="alert高度" value=""><br>
+                <input type="text" name="alert1_bgimg" placeholder="alert背景图片" value=""><br>
+                <input type="text" name="alert_num" value="" id="alert_num" style="display: none">
+                <div class="alertadd">
+                    +
+                </div>
+            </div>
+            <button class="formBody_btn banner_sub" type="submit">确认生成</button>
+        </form>
+    </div>
+    <div class="fictitious_tree">
+
+    </div>
+    <div class="dark_alert" style="display: block"></div>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        let valtext;
+        //pc,h5选项卡切换
+        $(".pcclick").on('click',function () {
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".pcdiv").show();
+            $(".h5div").hide();
+        })
+        $(".h5click").on('click',function () {
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".pcdiv").hide();
+            $(".h5div").show();
+            $(".img_btn").addClass("h5img_btn").removeClass("chang_btn");
+            $(".form_btn").attr("id","h5_submit");
+        });
+        //pc端新建页面请求
+        $(".creat_special").on('click',function () {
+            valtext = $(".input_text").val();
+            if(valtext === ""){
+                alert("请输入专题名称")
+            }else {
+                $.ajax({
+                    url:"../write/pc",
+                    data: {"text":valtext},
+                    type:"get",
+                    dataType:"json",
+                    success:function (res) {
+                        if(res.stutes === 1){
+                            alert("新建成功");
+                            $(".input_text").val("");
+                            $(".fictitious_tree").append(`<div class='${valtext}'>
+    <div class='banner'></div>
+    <div class="establish1"></div>
+    <div class="establish2"></div>
+    <div class="alert_dark1"><div class="alert1"></div></div>
+</div>`)
+                            $(".creat").hide();
+                            $(".dark_alert").hide();
+                            pcfun();
+                        }else {
+                            alert("新建失败")
+                        }
+                    }
+                })
+            }
+        });
+        //h5端新建页面请求
+        $(".creat_special_h5").on('click',function () {
+            valtext = $(".input_text_h5").val();
+            if(valtext === ""){
+                alert("请输入专题名称")
+            }else {
+                $.ajax({
+                    url:"../write/h5",
+                    data: {"text":valtext},
+                    type:"get",
+                    dataType:"json",
+                    success:function (res) {
+                        if(res.stutes === 1){
+                            alert("新建成功");
+                            $(".input_text_h5").val("");
+                            $(".fictitious_tree").append(`<div class='${valtext}'>
+    <div class='banner'></div>
+    <div class="establish1"></div>
+    <div class="establish2"></div>
+    <div class="alert_dark1"><div class="alert1"></div></div>
+</div>`);
+                            $(".creat").hide();
+                            $(".dark_alert").hide();
+                            h5fun ();
+                        }else {
+                            alert("新建失败")
+                        }
+                    }
+                })
+            }
+        });
+        function pcfun() {
+            //pc端图片批量修改
+            $(".chang_btn").on("click",function () {
+                let valtext = $(".input_img").val();
+                if(valtext === ""){
+                    alert("请输入图片名称")
+                }else {
+                    $.ajax({
+                        url:"../write/img",
+                        data: {"text":valtext},
+                        type:"get",
+                        dataType:"json",
+                        success:function (res) {
+                            if(res.stutes === 1){
+                                alert("修改成功");
+                                $(".input_img").val("");
+                            }else {
+                                alert("请将切图复制到目录")
+                            }
+                        }
+                    })
+                }
+            })
+            //pc端生成页面请求
+            $("#pc_submit").on("submit",function () {
+                var title = $(".input_title").val();
+                var key = $(".input_key").val();
+                var color = $(".input_bgcolor").val();
+                var height = $(".banner_height").val()
+                var name = $(".banner_name").val();
+                var $form = $(this).serialize();
+                let div_html = ``;
+                div_html = $(".fictitious_tree").html().toString();
+                $form+= "&div_html="+div_html;
+                console.log($form);
+                if(title !=="" && key !=="" && color !=="" && height !== "" && name !==""){
+                    $.ajax({
+                        url:"../write/banner",
+                        data: $form,
+                        type:"post",
+                        dataType:"json",
+                        success:function (res) {
+                            if(res.stutes === 1){
+                                alert("生成成功");
+                                $(".input_img").val("");
+                            }else {
+                                alert("生成失败")
+                            }
+                        }
+                    })
+                }else {
+                    alert("字段不能为空")
+                }
+                return false;
+            })
+        }
+        //h5部分请求
+        function h5fun () {
+            //h5端图片批量修改
+            $(".h5img_btn").on("click",function () {
+                let valtext = $(".input_img").val();
+                if(valtext === ""){
+                    alert("请输入图片名称")
+                }else {
+                    $.ajax({
+                        url:"../write/imgh5",
+                        data: {"text":valtext},
+                        type:"get",
+                        dataType:"json",
+                        success:function (res) {
+                            if(res.stutes === 1){
+                                alert("修改成功");
+                                $(".input_img").val("");
+                            }else {
+                                alert("请将切图复制到目录")
+                            }
+                        }
+                    })
+                }
+            })
+            //h5端生成页面请求
+            $("#h5_submit").on("submit",function () {
+                var title = $(".input_title").val();
+                var key = $(".input_key").val();
+                var color = $(".input_bgcolor").val();
+                var height = $(".banner_height").val()
+                var name = $(".banner_name").val();
+                var $form = $(this).serialize();
+                let div_html = ``;
+                div_html = $(".fictitious_tree").html().toString();
+                $form+= "&div_html="+div_html;
+                console.log($form);
+                if(title !=="" && key !=="" && color !=="" && height !== "" && name !==""){
+                    $.ajax({
+                        url:"../write/bannerh5",
+                        data: $form,
+                        type:"post",
+                        dataType:"json",
+                        success:function (res) {
+                            if(res.stutes === 1){
+                                alert("生成成功");
+                                $(".input_img").val("");
+                            }else {
+                                alert("生成失败")
+                            }
+                        }
+                    })
+                }else {
+                    alert("字段不能为空")
+                }
+                return false;
+            })
+        }
+        //公用添加div
+        let divnum = 2;
+        $("#div_num").val(divnum);
+        $(".divadd").on('click',function () {
+            divnum++;
+            $(".creatdiv").append(`<label>div${divnum}：</label>
+                <input type="text" name="div${divnum}_width" placeholder="div宽度" value=""><br>
+                <input type="text" name="div${divnum}_height" placeholder="div高度" value=""><br>
+                <input type="text" name="div${divnum}_bgimg" placeholder="div背景图片" value=""><br>`);
+            $(".alert_dark1").before(`<div class="establish${divnum}"></div>`);
+            $("#div_num").val(divnum);
+        });
+        //公用添加alert
+        let alertnum = 1;
+        $("#alert_num").val(alertnum);
+        $(".alertadd").on('click',function () {
+            alertnum++;
+            $(".alert_div").append(`<label>alert${alertnum}：</label>
+                <input type="text" name="alert${alertnum}_width" placeholder="alert宽度" value=""><br>
+                <input type="text" name="alert${alertnum}_height" placeholder="alert高度" value=""><br>
+                <input type="text" name="alert${alertnum}_bgimg" placeholder="alert背景图片" value=""><br>`);
+            console.log("888");
+            $("."+valtext+"").append(`<div class="alert_dark${alertnum}"><div class="alert${alertnum}"></div></div>`);
+            $("#alert_num").val(alertnum);
+        });
+    })
+</script>
+</html>

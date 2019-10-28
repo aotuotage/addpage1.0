@@ -1,0 +1,13 @@
+@if(!isset($nowrap))
+@extends('www.layouts.common')
+@section('title', '和信贷新用户活动_注册即领818元红包奖励_年化收益12%|和信贷官网')
+@section('keywords', '818红包奖励,年化收益12%')
+@section('description', '和信贷新手专享活动为新注册用户提供专享理财福利,年化收益率12%,用户可享受一次新手专享特权,加入金额从100至20000元,诚邀您体验新手理财专享活动。')
+@section('head')
+@include('www.layouts.head', ['page'=>'register'])
+<meta name="csrf-token" content="{{ csrf_token() }}"/>
+@endsection
+@endif
+@section('content')
+
+@endsection
